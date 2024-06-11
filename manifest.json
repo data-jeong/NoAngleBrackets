@@ -1,7 +1,7 @@
 {
 	"id": "angle-brackets-wrapper",
 	"name": "Angle Brackets Wrapper",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "This plugin allows you to easily wrap angle brackets (<>) with backticks (`) in your Markdown text, excluding code blocks. Toggle the backticks with a simple button click!",
 	"author": "data-jeong",
