@@ -7,23 +7,18 @@ import {
 	Setting,
 } from "obsidian";
 
-export default class MyPlugin extends Plugin {
+export default class NoAngleBracketsPlugin extends Plugin {
 	async onload() {
-		// 리본 아이콘 추가
 		this.addRibbonIcon(
 			"wrench",
 			"Toggle Angle Brackets",
-			(evt: MouseEvent) => {
-				// 버튼 클릭 시 실행되는 코드
-				this.toggleAngleBrackets();
-			}
+			this.toggleAngleBrackets.bind(this)
 		);
 
-		// 세팅 탭 추가
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new NoAngleBracketsSettingTab(this.app, this));
 	}
 
-	toggleAngleBrackets() {
+	async toggleAngleBrackets() {
 		const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
 		if (activeView) {
 			const editor = activeView.editor;
@@ -32,14 +27,11 @@ export default class MyPlugin extends Plugin {
 			let insideCodeBlock = false;
 			const processedLines = lines.map((line) => {
 				if (line.startsWith("```")) {
-					// 코드 블록 시작 또는 끝
 					insideCodeBlock = !insideCodeBlock;
 					return line;
 				} else if (insideCodeBlock) {
-					// 코드 블록 내부이면 변경하지 않음
 					return line;
 				} else {
-					// 코드 블록 외부이면 '<'와 '>'를 백틱으로 감싸거나 백틱을 제거함
 					if (line.includes("`<") || line.includes(">`")) {
 						return line.replace(/`</g, "<").replace(/>`/g, ">");
 					} else {
@@ -53,10 +45,10 @@ export default class MyPlugin extends Plugin {
 	}
 }
 
-class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+class NoAngleBracketsSettingTab extends PluginSettingTab {
+	plugin: NoAngleBracketsPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: NoAngleBracketsPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -73,7 +65,7 @@ class SampleSettingTab extends PluginSettingTab {
 			)
 			.addButton((button) => {
 				button.setButtonText("Toggle").onClick(async () => {
-					this.plugin.toggleAngleBrackets();
+					await this.plugin.toggleAngleBrackets();
 				});
 			});
 	}
