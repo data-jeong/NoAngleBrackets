@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "angle-brackets-wrapper",
+	"name": "Angle Brackets Wrapper",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "This plugin allows you to easily wrap angle brackets (<>) with backticks (`) in your Markdown text, excluding code blocks. Toggle the backticks with a simple button click!",
+	"author": "data-jeong",
+	"authorUrl": "",
+	"fundingUrl": "",
 	"isDesktopOnly": false
 }
